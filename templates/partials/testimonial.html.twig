@@ -1,0 +1,39 @@
+                    {% if testimonials |length > 0 %}
+                        <section id="section-testimonial" class="text-light">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3 text-center wow fadeInUp">
+                                        <h1>Customer Says</h1>
+                                        <div class="separator"><span><i class="fa fa-circle"></i></span></div>
+                                        <div class="spacer-single"></div>
+                                    </div>
+                                </div>
+
+                            <div id="testimonial-carousel" class="de_carousel  wow fadeInUp" data-wow-delay=".3s">                                
+                        {% for key, testimonial in testimonials %}
+
+
+
+                                <div class="col-md-6 item">
+                                    <div class="de_testi">
+                                        <blockquote>
+                                            <p>{{testimonial.testimonial}}</p>
+                                            <div class="de_testi_by">
+                                                {{testimonial.client_name}}, {{testimonial.company_name}}
+                                            </div>
+                                        </blockquote>
+
+                                    </div>
+                                </div>
+
+
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+                    {% else %}
+                        
+
+                    {% endif %}                    

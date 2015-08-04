@@ -1,0 +1,72 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{title}}{% endblock %}
+{% block bodyclass %}{{'header-top'}}{% endblock %}
+
+
+{% block content %}
+
+
+<div class="parallax contact">
+    <div class="container inner">
+      <div class="thin">
+        <div class="section-title text-center">
+          <h2>Get In Touch With Us</h2>
+          <span class="icon"><i class="icon-phone-1"></i></span> </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="form-container">
+              <div class="response alert alert-success"></div>
+              <form class="forms" action="contact/form-handler.php" method="post">
+                <fieldset>
+                  <ol>
+                    <li class="form-row text-input-row name-field">
+                      <input type="text" name="name" class="text-input defaultText required" title="Name (Required)"/>
+                    </li>
+                    <li class="form-row text-input-row email-field">
+                      <input type="text" name="email" class="text-input defaultText required email" title="Email (Required)"/>
+                    </li>
+                    <li class="form-row text-input-row subject-field">
+                      <input type="text" name="subject" class="text-input defaultText" title="Subject"/>
+                    </li>
+                    <li class="form-row text-area-row">
+                      <textarea name="message" class="text-area required"></textarea>
+                    </li>
+                    <li class="form-row hidden-row">
+                      <input type="hidden" name="hidden" value="" />
+                    </li>
+                    <li class="button-row">
+                      <input type="submit" value="Submit" name="submit" class="btn btn-submit bm0" />
+                    </li>
+                  </ol>
+                  <input type="hidden" name="v_error" id="v-error" value="Required" />
+                  <input type="hidden" name="v_email" id="v-email" value="Enter a valid email" />
+                </fieldset>
+              </form>
+            </div>
+            <!-- /.form-container --> 
+          </div>
+          <!-- /.span8 -->
+          <aside class="col-sm-4 sidebar lp10">
+            <div class="sidebox widget">
+              <h4>Contact Details</h4>
+              <p>Fusce dapibus, tellus commodo, tortor mauris condimentum utellus fermentum, porta sem malesuada magna. Sed posuere consectetur est at lobortis. </p>
+              <ul class="contact-info">
+                <li><i class="icon-location"></i> Moon St. 14/05 Light, Jupiter</li>
+                <li><i class="icon-phone"></i> 0247 541 65 87</li>
+                <li><i class="icon-mail"></i> <a href="mailto:support@slowave.com">support@slowave.com</a></li>
+              </ul>
+            </div>
+            <!-- /col --> 
+          </aside>
+          <!-- /.span4 --> 
+        </div>
+        <!-- /.row -->
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <!-- /.container --> 
+  </div>
+  <!-- /.contact -->
+
+{% endblock %}
