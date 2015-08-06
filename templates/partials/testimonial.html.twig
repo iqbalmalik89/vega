@@ -1,39 +1,26 @@
-                    {% if testimonials |length > 0 %}
-                        <section id="section-testimonial" class="text-light">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-6 col-md-offset-3 text-center wow fadeInUp">
-                                        <h1>Customer Says</h1>
-                                        <div class="separator"><span><i class="fa fa-circle"></i></span></div>
-                                        <div class="spacer-single"></div>
-                                    </div>
-                                </div>
-
-                            <div id="testimonial-carousel" class="de_carousel  wow fadeInUp" data-wow-delay=".3s">                                
-                        {% for key, testimonial in testimonials %}
-
-
-
-                                <div class="col-md-6 item">
-                                    <div class="de_testi">
-                                        <blockquote>
-                                            <p>{{testimonial.testimonial}}</p>
-                                            <div class="de_testi_by">
-                                                {{testimonial.client_name}}, {{testimonial.company_name}}
-                                            </div>
-                                        </blockquote>
-
-                                    </div>
-                                </div>
-
-
-
-                        {% endfor %}
-                    </div>
-                </div>
-            </section>
-
-                    {% else %}
-                        
-
-                    {% endif %}                    
+  {% if testimonials |length > 0 %}
+<div class="parallax testimonials">
+    <div class="container inner text-center">
+      <div class="section-title text-center bm20">
+        <h2>What Our Customers Think</h2>
+        <span class="icon"><i class="icon-quote"></i></span> </div>
+      <div id="testimonials" class="tab-container">
+      {% for key, testimonial in testimonials %}
+        <div class="panel-container">
+          <div id="tst1"> {{testimonial.testimonial}} <span class="author"> {{testimonial.client_name}} </span></div>
+         
+        </div>
+         {% endfor %}
+        <ul class="etabs">
+          <li class="tab"><a href="#tst1">1</a></li>
+          <li class="tab"><a href="#tst2">2</a></li>
+          <li class="tab"><a href="#tst3">3</a></li>
+          <li class="tab"><a href="#tst4">4</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- /.container --> 
+  </div>
+  {% endif %} 
+  
+  <!-- /.testimonials -->                  

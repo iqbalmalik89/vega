@@ -2268,6 +2268,7 @@ function a()
     var name            = $.trim($('#contact_name').val());
     var email           = $.trim($('#contact_email').val());
     var phone           = $.trim($('#contact_phone').val());
+    var subject         = $.trim($('#contact_subject').val());
     var message         = $.trim($('#contact_message').val());
     var check           = true;
 
@@ -2289,6 +2290,12 @@ function a()
         $('#contact_phone').addClass("error_input");
         check = false;
     }
+    if(subject == '')
+    {
+        $('#contact_subject').focus();
+        $('#contact_subject').addClass("error_input");
+        check = false;
+    }
     if(message == '')
     {
         $('#contact_message').focus();
@@ -2305,7 +2312,7 @@ function a()
                 type: 'POST',
                 url: apiUrl + 'query',
                 dataType : "JSON",
-                data: {name:name, email:email , phone:phone, message:message },
+                data: {name:name, email:email , phone:phone, message:message, subject,subject },
                 beforeSend:function(){
 
                 },
@@ -2317,6 +2324,7 @@ function a()
                       var name            = $('#contact_name').val('');
                       var email           = $('#contact_email').val('');
                       var phone           = $('#contact_phone').val('');
+                      var subject         = $('#contact_subject').val('');
                       var message         = $('#contact_message').val('');
                       showMsg('#mail_success', 'Your message has been sent successfully.','green');                    
                     $('input, textarea').removeClass("error_input");
