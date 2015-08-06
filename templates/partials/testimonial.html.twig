@@ -1,16 +1,18 @@
-  {% if testimonials |length > 0 %}
+ {% if testimonials |length > 0 %}
 <div class="parallax testimonials">
     <div class="container inner text-center">
       <div class="section-title text-center bm20">
         <h2>What Our Customers Think</h2>
         <span class="icon"><i class="icon-quote"></i></span> </div>
       <div id="testimonials" class="tab-container">
-      {% for key, testimonial in testimonials %}
         <div class="panel-container">
-          <div id="tst1"> {{testimonial.testimonial}} <span class="author"> {{testimonial.client_name}} </span></div>
+      {% for key, testimonial in testimonials %}
+         {% set key = key + 1 %}
+          <div id="tst{{++key}}"> {{testimonial.testimonial}} <span class="author"> {{testimonial.client_name}} </span></div>
          
-        </div>
          {% endfor %}
+        </div>
+
         <ul class="etabs">
           <li class="tab"><a href="#tst1">1</a></li>
           <li class="tab"><a href="#tst2">2</a></li>
@@ -23,4 +25,4 @@
   </div>
   {% endif %} 
   
-  <!-- /.testimonials -->                  
+  <!-- /.testimonials -->     
