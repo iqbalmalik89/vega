@@ -17,26 +17,27 @@
           <div class="col-sm-8">
             <div class="form-container">
               <div class="response alert alert-success"></div>
-              <form class="forms" action="contact/form-handler.php" method="post">
+              <form class="forms" action="#" method="post" id='contact_form'>
                 <fieldset>
                   <ol>
                     <li class="form-row text-input-row name-field">
-                      <input type="text" name="name" class="text-input defaultText required" title="Name (Required)"/>
+                      <input type="text" name="name" id="contact_name" class="text-input defaultText required" title="Name (Required)"/>
                     </li>
                     <li class="form-row text-input-row email-field">
-                      <input type="text" name="email" class="text-input defaultText required email" title="Email (Required)"/>
+                      <input type="text" name="email" id="contact_email" class="text-input defaultText required email" title="Email (Required)"/>
                     </li>
                     <li class="form-row text-input-row subject-field">
-                      <input type="text" name="subject" class="text-input defaultText" title="Subject"/>
+                      <input type="text" name="subject" id="contact_subject" class="text-input defaultText" title="Subject"/>
                     </li>
                     <li class="form-row text-area-row">
-                      <textarea name="message" class="text-area required"></textarea>
+                      <textarea name="message" id="contact_message" class="text-area required"></textarea>
                     </li>
                     <li class="form-row hidden-row">
                       <input type="hidden" name="hidden" value="" />
                     </li>
                     <li class="button-row">
-                      <input type="submit" value="Submit" name="submit" class="btn btn-submit bm0" />
+                      
+                      <input type="submit" value="Submit" name="submit" class="btn btn-submit bm0" onclick="a()" id='send_message'/>                                    
                     </li>
                   </ol>
                   <input type="hidden" name="v_error" id="v-error" value="Required" />

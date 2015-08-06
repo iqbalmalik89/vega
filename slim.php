@@ -91,6 +91,15 @@ function response($code, $dataAry)
         $app->render('contact.html.twig', $viewParameters);
     });
 
+     $app->get('/testimonials/', function () use ($app, $viewParameters) {
+        $testimonialRepo = new TestimonialRepo();
+        $testimonials = $testimonialRepo->getTestimonials(array());
+        $viewParameters['title'] = 'Testimonial';
+        $viewParameters['testimonials'] = $testimonials['data'];
+
+        $app->render('testimonial.html.twig', $viewParameters);
+    })->name('index');
+
     
 
 //     $app->get('/about/', function () use ($app, $viewParameters) {

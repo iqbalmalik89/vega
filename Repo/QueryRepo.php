@@ -92,10 +92,11 @@ class QueryRepo{
 			$name 				= $request['name'];
 			$email 				= $request['email'];
 			$phone				= $request['phone'];
+			$subject            = $request['subject'];
 			$message    		= $request['message'];
 
 
-			$values = array('name' => $name,'email' => $email,'`phone`' => $phone ,	'`message`' => $message, 'date_created' => date("Y-m-d H:i:s"));
+			$values = array('name' => $name,'email' => $email,'`phone`' => $phone , '`subject`' => $subject,	'`message`' => $message, 'date_created' => date("Y-m-d H:i:s"));
 			$query = $GLOBALS['con']->insertInto('queries', $values)->execute();
 
 			$loginRepo = new LoginRepo();
@@ -111,7 +112,7 @@ class QueryRepo{
 						<p>".$name." sent you a message.</p>
 
 						<tr>
-						<th>Subject: ".$data['subject']."</th>
+						<th>Subject: ".$subject."</th>
 						<th>Name: ".$name."</th>
 						<th>Email: ".$email."</th>
 						<th>Phone: ".$phone."</th>
