@@ -46,7 +46,7 @@ class JsonMiddleware extends \Slim\Middleware
     {
         if($_SERVER['HTTP_HOST'] == 'localhost')
         {
-            $database = 'romeo_interiors';
+            $database = 'vega';
             $user = 'root';
             $password = '';
         }

@@ -64,16 +64,15 @@ function response($code, $dataAry)
 	$app->requestdata = array_merge($jsonParams, $formParams);
 
     $app->get('/', function () use ($app, $viewParameters) {
-        // $testimonialRepo = new TestimonialRepo();
-        // $projectRepo = new ProjectRepo();
+         $testimonialRepo = new TestimonialRepo();
+
+         $testimonials = $testimonialRepo->getTestimonials(array());
+         $viewParameters['title'] = 'Home';
+         $viewParameters['testimonials'] = $testimonials['data'];
+
+         // $projectRepo = new ProjectRepo();
         // $projectCatRepo = new ProjectCategoryRepo();
         // $serviceRepo = new ServicesRepo();
-
-        // $testimonials = $testimonialRepo->getTestimonials(array());
-         //$viewParameters['title'] = 'Home';
-        // $viewParameters['testimonials'] = $testimonials['data'];
-
-
         // $projectCat = $projectCatRepo->getProjectCategories(array());
         // $projects = $projectRepo->getProjects(array());
         // $viewParameters['projects'] = $projects['data'];        
