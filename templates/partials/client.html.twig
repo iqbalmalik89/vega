@@ -1,0 +1,19 @@
+ {% if clients |length > 0 %}
+
+<div class="dark-wrapper">
+    <div class="container inner">
+      <div class="section-title text-center">
+        <h2>Our Clients</h2>
+        <span class="icon"><i class="icon-users-1"></i></span> </div>
+        <div class="owl-clients carousel-th">
+              {% for key, client in clients %}
+
+        <div class="item"><img src="{{client.web_url}}" alt=""></div>
+        
+
+      {%endfor%}
+      </div>
+      </div>
+    
+  </div>
+    {% endif %} 

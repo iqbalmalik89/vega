@@ -65,10 +65,16 @@ function response($code, $dataAry)
 
     $app->get('/', function () use ($app, $viewParameters) {
          $testimonialRepo = new TestimonialRepo();
+         $clientRepo = new ClientRepo();
+         
 
          $testimonials = $testimonialRepo->getTestimonials(array());
          $viewParameters['title'] = 'Home';
          $viewParameters['testimonials'] = $testimonials['data'];
+
+         $clients = $clientRepo->getClients(array());
+         $viewParameters['clients'] = $clients['data'];
+
 
          // $projectRepo = new ProjectRepo();
         // $projectCatRepo = new ProjectCategoryRepo();
