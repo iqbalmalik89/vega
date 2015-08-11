@@ -1,13 +1,13 @@
 var sortBy = '';
 var sortOrder = '';
 var server = window.location.hostname;
-var webUrl = location.protocol + "//"+server+"/romeo_interiors/"
+var webUrl = location.protocol + "//"+server+"/vega/"
 if(server == 'localhost')
 {
-  var apiUrl = location.protocol + "//"+server+"/romeo_interiors/api/";
+  var apiUrl = location.protocol + "//"+server+"/vega/api/";
 }
 else
-  var apiUrl = location.protocol + "//"+server+"/romeo_interiors/api/";
+  var apiUrl = location.protocol + "//"+server+"/vega/api/";
 
 
 function showMsg(id, msg, type)
