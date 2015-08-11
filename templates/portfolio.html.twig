@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{title}}{% endblock %}
+{% block bodyclass %}{{'header-top'}}{% endblock %}
+
+
+{% block content %}
+
+ {% if projects |length > 0 %}
+
+<!--/.navbar -->
+  <div class="offset"></div>
+  <div class="light-wrapper page-title">
+    <div class="container inner">
+      <h1>Portfolio with 3 Columns</h1>
+    </div>
+  </div>
+  <div class="dark-wrapper">
+    <div class="container inner">
+      <div class="portfolio">
+      {% if project_cats | length > 0 %}
+        <ul class="filter">
+          <li><a class="active" href="#" data-filter="*">All</a></li>
+          {% for cat in project_cats %}
+          <li><a href="#" data-filter=".graphic">{{cat.name}}</a></li>
+          {% endfor %} 
+        </ul>
+        {% endif %}
+        <!-- /.filter -->
+        
+        <ul class="items col3">
+        {% for project in projects %}
+          <li class="item graphic">
+            <figure class="icon-overlay medium icn-more"> <a href="asset/style/images/art/p1-full.jpg" class="fancybox-media" data-rel="portfolio"><img src="{{project.web_url}}" alt="" /></a></figure>
+            <div class="image-caption">
+              <h3><a href="project.html">{{project.name}}</a></h3>
+              <span class="meta">{{project.cat_name}}</span> </div>
+          </li>
+    {% endfor %}
+        </ul>
+      </div>
+      <!-- /.portfolio --> 
+    </div>
+    <!-- /.container --> 
+  </div>
+  <!-- /.dark-wrapper -->
+  <div class="color-wrapper">
+    <div class="container inner text-center">
+      <div class="thin">
+        <p class="lead">If you like what you see, let's work together.</p>
+        <a href="#" class="btn bm0">Hire Us</a> </div>
+    </div>
+  </div>
+
+{% endif %}
+{% endblock %}
