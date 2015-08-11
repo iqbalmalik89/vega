@@ -105,6 +105,21 @@ function response($code, $dataAry)
         $app->render('testimonial.html.twig', $viewParameters);
     })->name('index');
 
+
+$app->get('/portfolio/', function () use ($app, $viewParameters) {
+        $projectRepo = new ProjectRepo();
+        $projectCatRepo = new ProjectCategoryRepo();
+
+        $viewParameters['title'] = 'Portfolio';
+        $projects = $projectRepo->getProjects(array());
+        $viewParameters['projects'] = $projects['data'];
+
+        $projectCat = $projectCatRepo->getProjectCategories(array());
+        $viewParameters['project_cats'] = $projectCat['data']; 
+
+        $app->render('portfolio.html.twig', $viewParameters);
+    })->name('index');
+
     
 
 //     $app->get('/about/', function () use ($app, $viewParameters) {
