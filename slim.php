@@ -120,7 +120,22 @@ $app->get('/portfolio/', function () use ($app, $viewParameters) {
         $app->render('portfolio.html.twig', $viewParameters);
     })->name('index');
 
-    
+    $app->get('/project/:id/', function ($id)  use ($app, $viewParameters){
+        $viewParameters['title'] = 'Project';
+        $request['id'] = $id;
+        $projectRepo = new ProjectRepo();
+        $projectsData = $projectRepo->getProject($app->$request['id']);
+        // echo $request['id'];
+        // print_r($projectsData['data']);
+
+       $viewParameters['project_data'] = $projectsData['data'];  
+         
+       // echo "<pre>";
+       // print_r($viewParameters['project_data']);
+       // die();
+       $app->render('project.html.twig', $viewParameters);
+    });
+
 
 //     $app->get('/about/', function () use ($app, $viewParameters) {
 //         $testimonialRepo = new TestimonialRepo();
@@ -201,23 +216,6 @@ $app->get('/portfolio/', function () use ($app, $viewParameters) {
        
 //         $app->render('services.html.twig', $viewParameters);
 //     });
-
-
-//     $app->get('/products-services/:id/', function ($id)  use ($app, $viewParameters){
-//         $viewParameters['title'] = 'Services';
-//         $serviceRepo = new ServicesRepo();
-//         $servicesData = $serviceRepo->getServiceDetail($id);
-
-//        $viewParameters['service_data'] = $servicesData['service_data'];  
-//        $viewParameters['services'] = $servicesData['services'];  
-// //       $viewParameters['service_name'] = $servicesData['service_data']['name'];  
-//        // echo "<pre>";
-//        // print_r($viewParameters);
-//        // die();
-//        $app->render('single_services.html.twig', $viewParameters);
-//     });
-
-
 
 
 //     $app->get('/admin/' , function () use ($app, $viewParameters){

@@ -22,7 +22,7 @@
         <ul class="filter">
           <li><a class="active" href="#" data-filter="*">All</a></li>
           {% for cat in project_cats %}
-          <li><a href="#" data-filter=".graphic">{{cat.name}}</a></li>
+          <li><a href="#" data-filter=".{{cat.name}}">{{cat.name}}</a></li>
           {% endfor %} 
         </ul>
         {% endif %}
@@ -33,7 +33,7 @@
           <li class="item graphic">
             <figure class="icon-overlay medium icn-more"> <a href="asset/style/images/art/p1-full.jpg" class="fancybox-media" data-rel="portfolio"><img src="{{project.web_url}}" alt="" /></a></figure>
             <div class="image-caption">
-              <h3><a href="project.html">{{project.name}}</a></h3>
+              <h3><a href="{{web_url}}project/{{project.id}}/">{{project.name}}</a></h3>
               <span class="meta">{{project.cat_name}}</span> </div>
           </li>
     {% endfor %}
