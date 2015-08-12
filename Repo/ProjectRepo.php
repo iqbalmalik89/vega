@@ -3,66 +3,62 @@ class ProjectRepo{
 
 	public function getProjects($request)
 	{
-			$requestData = $request;
-			// Initial response is bad request
-			//$response = 400;
+		$exists = $GLOBALS['con']->from('projects');
+		$data = array();
 
+		foreach($exists as $projects)
+		{
+		    $projectData = $this->getProject(array('id' => $projects['id']));
+			$data[] = $projectData['data'];
+		}
+
+		$response = 200;
 			
-				$exists = $GLOBALS['con']->from('projects');
-				$data = array();
-
-				foreach($exists as $projects)
-		    	{
-		    		$projectData = $this->getProject(array('id' => $projects['id']));
-					$data[] = $projectData['data'];
-				}
-
-				$response = 200;
-			
-			return array('code' => $response,'data' => $data);
+		return array('code' => $response,'data' => $data);
 			
 	}
 
 	public function getProject($request)
 	{
-			// Initial response is bad request
-			//$response = 400;
-				$catRepo = new ProjectCategoryRepo();
-				$exists = $GLOBALS['con']->from('projects')->where('id',$request['id']);
-				$data = array();
+		
+		// Initial response is bad request
+		//$response = 400;
+		$catRepo = new ProjectCategoryRepo();
+		$exists = $GLOBALS['con']->from('projects')->where('id',$request['id']);
+		$data = array();
 
-				foreach($exists as $projects)
+		foreach($exists as $projects)
+		{
+		    $videos = $this->getVideos($request['id']);
+		    $projects['videos'] = $videos['data']; 
+
+		    $images = $this->getImages($request['id']);
+		    $projects['images'] = $images['data']; 
+
+		    if(!empty($images['data']))
+		    {
+		    	if(!empty($images['data'][0]))
 		    	{
-		    		$videos = $this->getVideos($request['id']);
-		    		$projects['videos'] = $videos['data']; 
-
-		    		$images = $this->getImages($request['id']);
-		    		$projects['images'] = $images['data']; 
-
-		    		if(!empty($images['data']))
-		    		{
-		    			if(!empty($images['data'][0]))
-		    			{
-		    				$projects['web_url'] = $images['data'][0]['web_url'];
-		    			}
-		    		}
+		    		$projects['web_url'] = $images['data'][0]['web_url'];
+		    	}
+		    }
 
 
-		    		$catData = $catRepo->getProjectCategory(array('id' => $projects['cat_id']));
-		    		if(!empty($catData['data']))
-		    		{
-		    			if(isset($catData['data']))
-		    			{
-				    		$projects['cat_name'] = $catData['data']['name'];
-		    			}
-		    		}
-					$data = $projects;
+		    $catData = $catRepo->getProjectCategory(array('id' => $projects['cat_id']));
+		    if(!empty($catData['data']))
+		    {
+		    	if(isset($catData['data']))
+		    	{
+				    $projects['cat_name'] = $catData['data']['name'];
+		    	}
+		    }
+			$data = $projects;
 
-				}
+		}
 
-				$response = 200;
+		$response = 200;
 			
-			return array('code' => $response,'data' => $data);
+		return array('code' => $response,'data' => $data);
 			
 	}
 
