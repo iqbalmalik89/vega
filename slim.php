@@ -124,7 +124,7 @@ $app->get('/portfolio/', function () use ($app, $viewParameters) {
         $viewParameters['title'] = 'Project';
         $request['id'] = $id;
         $projectRepo = new ProjectRepo();
-        $projectsData = $projectRepo->getProject($app->$request['id']);
+        $projectsData = $projectRepo->getProject(array('id' => $request['id']));        
         // echo $request['id'];
         // print_r($projectsData['data']);
 
