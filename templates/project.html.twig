@@ -19,7 +19,7 @@
   <div class="dark-wrapper">
     <div class="owl-slider-wrapper bm0">
       <div class="owl-portfolio-slider owl-carousel">
-        <div class="item"> <img src="style/images/art/pslider-1.jpg" alt="" /> </div>
+        <div class="item"> <img src="{{project_data.web_url}}" alt="" /> </div>
         <div class="item"> <img src="style/images/art/pslider-2.jpg" alt="" /> </div>
       </div>
       <div class="owl-custom-nav"> <a class="slider-prev"></a> <a class="slider-next"></a> </div>
@@ -35,9 +35,9 @@
         <!-- /.col-sm-8 -->
         <div class="col-sm-4 lp30">
           <ul class="item-details">
-            <li><span>Date:</span> 02 May 2013</li>
-            <li><span>Categories:</span> Illustration, Branding</li>
-            <li><span>Client:</span> Sit Commodo Sollicitudin</li>
+            <li><span>Date:</span>{{project_data.date_created}}</li>
+            <li><span>Categories:</span> {{project_data.cat_name}} </li>
+            <li><span>Client:</span> {{project_data.client}} </li>
             <li><span>Link:</span> <a href="http://elemisfreebies.com">http://elemisfreebies.com</a></li>
           </ul>
         </div>
@@ -79,35 +79,35 @@
         </div>
         <!-- /.item -->
         <div class="item">
-          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post3.html"><img src="asset/style/images/art/p3.jpg" alt="" /></a></figure>
+          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post3.html"><img src="{{web_url}}asset/style/images/art/p3.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post3.html">Bi-fold Mockup</a></h3>
             <span class="meta">Leaflet, Business</span> </div>
         </div>
         <!-- /.item -->
         <div class="item">
-          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post4.html"><img src="asset/style/images/art/p4.jpg" alt="" /></a></figure>
+          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post4.html"><img src="{{web_url}}asset/style/images/art/p4.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post4.html">Infographic Elements</a></h3>
             <span class="meta">Flat, Graphic</span> </div>
         </div>
         <!-- /.item -->
         <div class="item">
-          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post.html"><img src="asset/style/images/art/p5.jpg" alt="" /></a></figure>
+          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post.html"><img src="{{web_url}}asset/style/images/art/p5.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post.html">Business Cards</a></h3>
             <span class="meta">Branding, Corporate</span> </div>
         </div>
         <!-- /.item -->
         <div class="item">
-          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post2.html"><img src="asset/style/images/art/p6.jpg" alt="" /></a></figure>
+          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post2.html"><img src="{{web_url}}asset/style/images/art/p6.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post2.html">Cover Disk Mockup</a></h3>
             <span class="meta">PSD, Music</span> </div>
         </div>
         <!-- /.item -->
         <div class="item">
-          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post3.html"><img src="asset/style/images/art/p7.jpg" alt="" /></a></figure>
+          <figure class="icon-overlay medium icn-link"> <a href="portfolio-post3.html"><img src="{{web_url}}asset/style/images/art/p7.jpg" alt="" /></a></figure>
           <div class="image-caption">
             <h3><a href="portfolio-post3.html">Gist iPhone App</a></h3>
             <span class="meta">Application, Mobile</span> </div>
@@ -117,83 +117,7 @@
       <!-- /.owlcarousel --> 
     </div>
   </div>
-  <footer class="black-wrapper">
-    <div class="container inner">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="widget"> <img src="asset/style/images/logo.png" data-at2x="style/images/logo@2x.png" alt="" />
-            <div class="divide20"></div>
-            <p>Aenean lacinia bibendum nulla sed leo posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper metus auctor fringi. Nullam quis risus. </p>
-            <p>Vestibulum id ligula porta  euismod semper. Maecenas faucibus mollis.</p>
-            <div class="divide5"></div>
-            <ul class="social">
-              <li><a href="#"><i class="icon-s-rss"></i></a></li>
-              <li><a href="#"><i class="icon-s-twitter"></i></a></li>
-              <li><a href="#"><i class="icon-s-facebook"></i></a></li>
-              <li><a href="#"><i class="icon-s-pinterest"></i></a></li>
-              <li><a href="#"><i class="icon-s-linkedin"></i></a></li>
-            </ul>
-          </div>
-          <!-- /.widget --> 
-        </div>
-        <!-- /col -->
-        
-        <div class="col-sm-3">
-          <div class="widget">
-            <h3 class="section-title widget-title upper">Popular Posts</h3>
-            <ul class="post-list">
-              <li>
-                <h6><a href="blog-post.html">Vivamus sagittis lacus vel augue metus</a></h6>
-                <em>3th Oct 2012</em> </li>
-              <li>
-                <h6><a href="blog-post.html">Scelerisque nisl consectetur et</a></h6>
-                <em>28th Sep 2012</em> </li>
-              <li>
-                <h6><a href="blog-post.html">Pellentesque ornare sem lacinia quam</a></h6>
-                <em>15th Aug 2012</em> </li>
-            </ul>
-            <!-- /.post-list --> 
-          </div>
-          <!-- /.widget --> 
-        </div>
-        <!-- /col -->
-        
-        <div class="col-sm-3">
-          <div class="widget">
-            <h3 class="section-title widget-title upper">Get In Touch</h3>
-            <p>Fusce dapibus, tellus commodo, tortor mauris condimentum utellus fermentum, porta sem malesuada magna. Sed posuere consectetur est at lobortis.</p>
-            <div class="divide10"></div>
-            <div class="contact-info"> <i class="icon-location"></i> Moonshine St. 14/05 Light City <br />
-              <i class="icon-phone"></i>+00 (123) 456 78 90 <br />
-              <i class="icon-mail"></i> <a href="first.last@email.com">first.last@email.com</a> </div>
-          </div>
-        </div>
-        <!-- /col -->
-        
-        <div class="col-sm-3">
-          <div class="widget">
-            <h3 class="section-title widget-title upper">Tags</h3>
-            <div class="tagcloud"> <a href="#" style="font-size: 9pt;">blogroll</a> <a href="#" style="font-size: 19pt;">daily</a> <a href="#" style="font-size: 9pt;">dialog</a> <a href="#" style="font-size: 9pt;">gallery</a> <a href="#" style="font-size: 10pt;">journal</a> <a href="#" style="font-size: 9pt;">link</a> <a href="#" style="font-size: 12pt;">motion</a> <a href="#" style="font-size: 9pt;">music</a> <a href="#" style="font-size: 20pt;">photo</a> <a href="#" style="font-size: 13pt;">professional</a> <a href="#" style="font-size: 16pt;">quotation</a> <a href="#" style="font-size: 9pt;">show</a> <a href="#" style="font-size: 15pt;">sound</a> <a href="#" style="font-size: 9pt;">tv</a> <a href="#" style="font-size: 9pt;">video</a> <a href="#" style="font-size: 9pt;">gift</a> <a href="#" style="font-size: 19pt;">label</a> <a href="#" style="font-size: 9pt;">christmas</a> </div>
-          </div>
-          <!-- /.widget -->
-          <div class="divide30"></div>
-          <div class="widget">
-            <h3 class="section-title widget-title upper">Newsletter</h3>
-            <form id="newsletter" class="form-inline newsletter" role="form">
-              <div>
-                <label class="sr-only" for="exampleInputEmail">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
-              </div>
-              <button type="submit" class="btn btn-default btn-submit"><i class="icon-paper-plane"></i></button>
-            </form>
-          </div>
-          <!-- /.widget --> 
-          
-        </div>
-        <!-- /col --> 
-      </div>
-      <!-- /.row --> 
-    </div>
+  
     <!-- .container -->
 {# {% endif %} #}
 {% endblock %}
