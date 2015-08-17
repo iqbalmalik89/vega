@@ -1288,6 +1288,7 @@ function getProjects()
                             <td>'+value.value+'</td>\
                             <td>'+value.client+'</td>\
                             <td>'+value.heading+'</td>\
+                            <td>'+value.tags+'</td>/'
                             <td><a href="javascript:void(0);" data-toggle="modal"  onclick="getSingleProject('+value.id+');" data-target="#addproject">Edit</a> | <a href="javascript:void(0);" onclick="deleteProject('+value.id+');">Delete</a></td>\
                          </tr>';
 

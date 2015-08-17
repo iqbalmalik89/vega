@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>:: Romeo Admin :: </title>
+<title>:: Vega Admin :: </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <?php include('inc/js.php') ;?>
@@ -19,7 +19,7 @@ $( document ).ready(function() {
 });
 
 
-}
+
 </script>
 <script type="text/javascript" charset="utf-8">
 
@@ -160,6 +160,25 @@ $( document ).ready(function() {
     <div class="col-md-10 column">
       <form class="form-horizontal" role="form" onsubmit="return false;">
         <div class="form-group">
+           <label for="inputEmail3" class="col-sm-2 control-label">Tags</label>
+          <div class="col-sm-4">
+          <select multiple class="selectpicker" id="cat_id">
+    
+  </select>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-10 column">
+      <form class="form-horizontal" role="form" onsubmit="return false;">
+        <div class="form-group">
            <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
           <div class="col-sm-5">
 <!--             <input type="text" class="form-control" id="logo" /> -->
@@ -246,6 +265,7 @@ $( document ).ready(function() {
                     <th>Value</th>
                     <th>Client</th>
                     <th>Heading</th>
+                    <th>Tags</th>
                     <th width="150">Actions</th>
                   </tr>
                 </thead>

@@ -29,8 +29,8 @@ class ProjectRepo{
 
 		foreach($exists as $projects)
 		{
-		    $videos = $this->getVideos($request['id']);
-		    $projects['videos'] = $videos['data']; 
+		    // $videos = $this->getVideos($request['id']);
+		    // $projects['videos'] = $videos['data']; 
 
 		    $images = $this->getImages($request['id']);
 		    $projects['images'] = $images['data']; 
@@ -95,7 +95,7 @@ class ProjectRepo{
 		if(!empty($request))
 		{
 	
-			$values = array('cat_id' => $request['cat_id'],'name' => $request['name'],'location' => $request['location'],'value' => $request['value'],'client' => $request['client'],'heading' => $request['heading'],'description' => $request['description'],'date_created' => date("Y-m-d H:i:s"));
+			$values = array('cat_id' => $request['cat_id'],'name' => $request['name'],'location' => $request['location'],'value' => $request['value'],'client' => $request['client'],'heading' => $request['heading'],'description' => $request['description'],'date_created' => date("Y-m-d H:i:s"), 'tags' => $request['tags']);
 			$projectId = $GLOBALS['con']->insertInto('projects', $values)->execute();
 
 			$response = '200';
@@ -162,7 +162,7 @@ class ProjectRepo{
 
 			if($count > 0)
 			{
-				$values = array('cat_id' => $request['cat_id'],'name' => $request['name'],'location' => $request['location'],'value' => $request['value'],'client' => $request['client'],'heading' => $request['heading'],'description' => $request['description'],'date_created' => date("Y-m-d H:i:s"));
+				$values = array('cat_id' => $request['cat_id'],'name' => $request['name'],'location' => $request['location'],'value' => $request['value'],'client' => $request['client'],'heading' => $request['heading'],'description' => $request['description'],'date_created' => date("Y-m-d H:i:s"), 'tags' => $request['tags']);
 				$query = $GLOBALS['con']->update('projects', $values, $request['id'])->execute();
 
 				$response = 200;
@@ -227,6 +227,16 @@ public function getImages($project_id)
 			$response = 200;
 			return array('code' => $response,'data' => $data);
 			
+}
+
+public function getRelatedProjects($request)
+{
+	$project = $GLOBALS['con']->from('projects')->where('id',$request['id']);	
+	if(!empty($project))
+	{
+		$tags = explode(',',$project['tags']);
+		//$related_projects = $GLOBALS['con']->from ('projects')->where('tags' like $tags);
+	}
 }
 
 }

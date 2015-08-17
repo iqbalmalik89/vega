@@ -110,6 +110,9 @@ $app->get('/portfolio/', function () use ($app, $viewParameters) {
         $projectRepo = new ProjectRepo();
         $projectCatRepo = new ProjectCategoryRepo();
 
+        $projectCatsData = $projectCatRepo->getRelatedCategories(array('id' => $request['id'])); 
+        $viewParameters['project_cat_data'] = $projectCatsData['data'];
+
         $viewParameters['title'] = 'Portfolio';
         $projects = $projectRepo->getProjects(array());
         $viewParameters['projects'] = $projects['data'];
@@ -124,6 +127,8 @@ $app->get('/portfolio/', function () use ($app, $viewParameters) {
         $viewParameters['title'] = 'Project';
         $request['id'] = $id;
         $projectRepo = new ProjectRepo();
+
+
         $projectsData = $projectRepo->getProject(array('id' => $request['id']));        
         // echo $request['id'];
         // print_r($projectsData['data']);
@@ -218,9 +223,9 @@ $app->get('/portfolio/', function () use ($app, $viewParameters) {
 //     });
 
 
-//     $app->get('/admin/' , function () use ($app, $viewParameters){
-//         echo "<script>window.location='login.php'</script>";
-//     });
+    $app->get('/admin/' , function () use ($app, $viewParameters){
+        echo "<script>window.location='login.php'</script>";
+    });
 
 
 //     $app->get('/news/', function () use ($app, $viewParameters) {
@@ -646,7 +651,7 @@ $app->group('/api', function () use ($app) {
         response($resp['code'], $resp);
     });
 
-        // Get Services    
+    // Get Services    
      $app->get('/services', function() use ($app){
 
         $service = new ServicesRepo();
@@ -662,7 +667,7 @@ $app->group('/api', function () use ($app) {
         response($code['code'], array('data' => $code['data']));
     });    
 
-// Add Services
+    // Add Services
      $app->post('/services', function() use ($app){
 
         $service = new ServicesRepo();
@@ -670,7 +675,7 @@ $app->group('/api', function () use ($app) {
         response($code, array());
     }); 
 
-// Delete Services
+    // Delete Services
      $app->post('/deleteservices', function() use ($app){
 
         $service = new ServicesRepo();
@@ -701,6 +706,21 @@ $app->group('/api', function () use ($app) {
         response($code['code'], array('data' => $code['data']));
     });
 
+    // Get Related Project Categories    
+     $app->get('/relatedcategories', function() use ($app){
+
+        $category = new ProjectCategoryRepo();
+        $code = $category->getRelatedCategories($app->requestdata);
+        response($code['code'], array('data' => $code['data']));
+    });  
+
+    // Get Related Project     
+     $app->get('/relatedprojects', function() use ($app){
+
+        $relatedProjects = new ProjectRepo();
+        $code = $relatedProjects->getRelatedProjects($app->requestdata);
+        response($code['code'], array('data' => $code['data']));
+    }); 
 });
 
 

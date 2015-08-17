@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>:: Romeo Admin :: </title>
+<title>:: Vega Admin :: </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <?php include('inc/js.php') ;?>

@@ -99,24 +99,42 @@ class ProjectCategoryRepo{
 
 			if($count > 0)
 			{
-				$count 			= $GLOBALS['con']->from('project_categories')->where('name',$request['name'])->count();
+				$count 	= $GLOBALS['con']->from('project_categories')->where('name',$request['name'])->count();
 				if($count > 0)
 				{
-					$response 	= '400';
+					$response = '400';
 				}
 				else
 				{
-					$values 	= array('name' => $request['name']);
-					$query 		= $GLOBALS['con']->update('project_categories', $values, $request['id'])->execute();			
-					$response 	= 200;
+					$values = array('name' => $request['name']);
+					$query 	= $GLOBALS['con']->update('project_categories', $values, $request['id'])->execute();			
+					$response = 200;
 				}
 			}
 			else
 			{
-				$response 	= 400;
+				$response = 400;
 			}
 		}
 		return $response;
+	}
+
+	public function getRelatedCategories($request)
+	{
+		$cats = $GLOBALS['con']->from('related_categories')->where('project_id', $request['id']);
+		print_r($cats);
+		$data = array();
+
+		// foreach($cats as $items)
+		// {
+		// 	$projectCatData = $this->getProjectCategory(array('id' => $items['id']));
+		// }
+		// 			$data[] = $projectCatData['data'];
+
+		 $response = 200;
+			
+		return array('code' => $response,'data' => $cats);
+
 	}
 
 }
