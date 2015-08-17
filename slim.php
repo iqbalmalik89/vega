@@ -110,8 +110,8 @@ $app->get('/portfolio/', function () use ($app, $viewParameters) {
         $projectRepo = new ProjectRepo();
         $projectCatRepo = new ProjectCategoryRepo();
 
-        $projectCatsData = $projectCatRepo->getRelatedCategories(array('id' => $request['id'])); 
-        $viewParameters['project_cat_data'] = $projectCatsData['data'];
+        //$projectCatsData = $projectCatRepo->getRelatedCategories(array('id' => $request['id'])); 
+        //$viewParameters['project_cat_data'] = $projectCatsData['data'];
 
         $viewParameters['title'] = 'Portfolio';
         $projects = $projectRepo->getProjects(array());
