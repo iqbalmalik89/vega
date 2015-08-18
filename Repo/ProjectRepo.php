@@ -190,42 +190,39 @@ class ProjectRepo{
 
 public function getVideos($project_id)
 {
-
-		// Initial response is bad request
-		//$response = 400;
-
+	// Initial response is bad request
+	//$response = 400;
 			
-		$project = $GLOBALS['con']->from('project_videos')->where('project_id',$project_id);
-		$data = array();
+	$project = $GLOBALS['con']->from('project_videos')->where('project_id',$project_id);
+	$data = array();
 
-		foreach($project as $projects)
-		    {
-				$data[] = $projects;
-			}
+	foreach($project as $projects)
+	{
+		$data[] = $projects;
+	}
 
-			$response = 200;
+	$response = 200;
 			
-			return array('code' => $response,'data' => $data);
+	return array('code' => $response,'data' => $data);
 			
 }
 
 public function getImages($project_id)
 {
+	// Initial response is bad request
+	//$response = 400;
 
-		// Initial response is bad request
-		//$response = 400;
+	$project = $GLOBALS['con']->from('project_images')->where('project_id',$project_id);
+	$data = array();
 
-		$project = $GLOBALS['con']->from('project_images')->where('project_id',$project_id);
-		$data = array();
+	foreach($project as $projects)
+	{
+	   	$projects['web_url'] = Image::getRootPath(false).'data/project/'.$projects['path'];
+		$data[] = $projects;
+	}
 
-		foreach($project as $projects)
-		    {
-		    	$projects['web_url'] = Image::getRootPath(false).'data/project/'.$projects['path'];
-				$data[] = $projects;
-			}
-
-			$response = 200;
-			return array('code' => $response,'data' => $data);
+	$response = 200;
+	return array('code' => $response,'data' => $data);
 			
 }
 
