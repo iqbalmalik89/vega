@@ -25,8 +25,6 @@ class ProjectRepo{
 		//$response = 400;
 		$catRepo = new ProjectCategoryRepo();
 		$exists = $GLOBALS['con']->from('projects')->where('id',$request['id']);
-		$data = array();
-
 		foreach($exists as $projects)
 		{
 		    // $videos = $this->getVideos($request['id']);
@@ -94,7 +92,8 @@ class ProjectRepo{
 		$response = 400;
 		if(!empty($request))
 		{
-	
+			if(!isset($request['tags']))
+				$request['tags'] = '';
 			$values = array('cat_id' => $request['cat_id'],'name' => $request['name'],'location' => $request['location'],'value' => $request['value'],'client' => $request['client'],'heading' => $request['heading'],'description' => $request['description'],'date_created' => date("Y-m-d H:i:s"), 'tags' => $request['tags']);
 			$projectId = $GLOBALS['con']->insertInto('projects', $values)->execute();
 
