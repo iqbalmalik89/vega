@@ -25,27 +25,26 @@ class ProjectRepo{
 		$projects = $GLOBALS['con']->from('projects')->where('id',$request['id'])->fetch();
 		$data = array();
 
-		    $images = $this->getImages($request['id']);
-		    $projects['images'] = $images['data']; 
+		$images = $this->getImages($request['id']);
+		$projects['images'] = $images['data']; 
 
-		    if(!empty($images['data']))
-		    {
-		    	if(!empty($images['data'][0]))
-		    	{
-		    		$projects['web_url'] = $images['data'][0]['web_url'];
-		    	}
+		if(!empty($images['data']))
+		{
+		   	if(!empty($images['data'][0]))
+		  	{
+		    	$projects['web_url'] = $images['data'][0]['web_url'];
 		    }
+		}
 
-
-		    $catData = $catRepo->getProjectCategory(array('id' => $projects['cat_id']));
-		    if(!empty($catData['data']))
-		    {
+		$catData = $catRepo->getProjectCategory(array('id' => $projects['cat_id']));
+		if(!empty($catData['data']))
+		   	{
 		    	if(isset($catData['data']))
 		    	{
 				    $projects['cat_name'] = $catData['data']['name'];
 		    	}
 		    }
-			$data = $projects;
+		$data = $projects;
 
 		$response = 200;
 			
@@ -85,7 +84,8 @@ class ProjectRepo{
 		$response = 400;
 		if(!empty($request))
 		{
-	
+			if(!isset($request['tags']))
+				$request['tags'] = '';
 			$values = array('cat_id' => $request['cat_id'],'name' => $request['name'],'location' => $request['location'],'value' => $request['value'],'client' => $request['client'],'heading' => $request['heading'],'description' => $request['description'],'date_created' => date("Y-m-d H:i:s"), 'tags' => $request['tags']);
 			$projectId = $GLOBALS['con']->insertInto('projects', $values)->execute();
 
