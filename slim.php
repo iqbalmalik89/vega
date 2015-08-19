@@ -337,7 +337,7 @@ $app->group('/api', function () use ($app) {
         response($code['code'], array('data' => $code['data']));
     });     
 
-// Add Client
+    // Add Client
      $app->post('/client', function() use ($app){
 
         $new = new ClientRepo();
@@ -385,7 +385,7 @@ $app->group('/api', function () use ($app) {
         response($code['code'], array('data' => $code['data']));
     });     
 
-// Add Project Category
+    // Add Project Category
      $app->post('/projectcategory', function() use ($app){
 
         $new = new ProjectCategoryRepo();

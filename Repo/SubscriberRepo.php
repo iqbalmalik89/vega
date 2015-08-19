@@ -28,33 +28,27 @@ class SubscriberRepo
 
 	public function getSubscriber($request)
 		{
-			$requestData = $request;
 			// Initial response is bad request
 			$response = 400;
 
 			// If there is some data in json form
 			if(!empty($requestData))
 			{				
-				$exists = $GLOBALS['con']->from('subscriber')->where('id',$requestData['id']);
+				$subscriber = $GLOBALS['con']->from('subscriber')->where('id',$request['id'])->fetch();
 				$data = array();
 
-				foreach($exists as $items)
-		    	{
-					$data[] = $items;
-
-				}
-
+				$data[] = $subscriber;
 				$response = 200;
 			}
 			
 			else
 			{
-				$exists = $GLOBALS['con']->from('subscriber');
+				$subscribers = $GLOBALS['con']->from('subscriber');
 				$data = array();
 
-				foreach($exists as $items)
+				foreach($subscribers as $subscriber)
 		    	{
-					$data[] = $items;
+					$data[] = $subscriber;
 
 				}
 

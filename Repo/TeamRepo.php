@@ -3,24 +3,21 @@ class TeamRepo{
 
 	public function getTeams($request)
 		{
-			$requestData = $request;
 			// Initial response is bad request
-			//$response = 400;
+			$response = 400;
 
 			// If there is some data in json form
 			
-				$team = $GLOBALS['con']->from('team')->orderBy('sort_order','asc');
-				$data = array();
+			$teams = $GLOBALS['con']->from('team')->orderBy('sort_order','asc');
+			$data = array();
 
-				foreach($team as $teams)
-		    	{
-		    		$teamData 		= $this->getTeam(array('id' => $teams['id']));
-					$data[] 		= $teamData['data'];
+			foreach($teams as $team)
+		    {
+		    	$teamData 		= $this->getTeam(array('id' => $team['id']));
+				$data[] 		= $teamData['data'];
+			}
 
-				}
-
-				$response = 200;
-					
+			$response = 200;
 			
 			return array('code' => $response,'data' => $data);
 			
@@ -28,18 +25,14 @@ class TeamRepo{
 
 	public function getTeam($request)
 	{
-				$team = $GLOBALS['con']->from('team')->where('id',$request['id']);
+		$teams = $GLOBALS['con']->from('team')->where('id',$request['id'])->fetch();
 
-				foreach($team as $teams)
-		    	{
-					$teams['web_url'] 	= Image::getRootPath(false).'data/team/'.$teams['path'];
-					$data 				= $teams;
+		$teams['web_url'] 	= Image::getRootPath(false).'data/team/'.$teams['path'];
+		$data = $teams;
 
-				}
-
-				$response = 200;
+		$response = 200;
 			
-			return array('code' => $response,'data' => $data);
+		return array('code' => $response,'data' => $data);
 			
 	}
 
