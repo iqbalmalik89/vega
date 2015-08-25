@@ -36,14 +36,14 @@ class ProjectRepo{
 		    }
 		}
 
-		$catData = $catRepo->getProjectCategory(array('id' => $projects['cat_id']));
-		if(!empty($catData['data']))
-		   	{
-		    	if(isset($catData['data']))
-		    	{
-				    $projects['cat_name'] = $catData['data']['name'];
-		    	}
-		    }
+		// $catData = $catRepo->getProjectCategory(array('id' => $projects['cat_id']));
+		// if(!empty($catData['data']))
+		//    	{
+		//     	if(isset($catData['data']))
+		//     	{
+		// 		    $projects['cat_name'] = $catData['data']['name'];
+		//     	}
+		//     }
 		$data = $projects;
 
 		$response = 200;

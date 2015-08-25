@@ -34,7 +34,7 @@ class ClientRepo{
 	    $projectData = $projectRepo->getProject(array('id' => $clients['project_id']));
 	    if(!empty($projectData['data']))
 	   	{
-			$clients['project_name'] = $projectData['data']['name'];
+			//$clients['project_name'] = $projectData['data']['name'];
 	    }
 	    else
 	    {
@@ -84,7 +84,6 @@ class ClientRepo{
 			$query = $GLOBALS['con']->insertInto('clients', $values)->execute();
 
 			$response = '200';
-
 			
 		}
 		else
@@ -92,8 +91,7 @@ class ClientRepo{
 			$response = '400';
 		}
 
-
-			return $response;
+		return $response;
 
 	}
 
