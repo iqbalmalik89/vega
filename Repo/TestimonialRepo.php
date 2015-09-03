@@ -3,43 +3,37 @@ class TestimonialRepo{
 
 	public function getTestimonials($request)
 	{
-			$requestData = $request;
-			// Initial response is bad request
-			//$response = 400;
+		// Initial response is bad request
+		$response = 400;
 
+		$testimonials = $GLOBALS['con']->from('testimonials');
+		$data = array();
+
+		foreach($testimonials as $testimonial)
+		{
+			$testimonialData 	= $this->getTestimonial(array('id' => $testimonial['id']));
+			$data[] 			= $testimonialData['data'];
+		}
+
+		$response = 200;
 			
-				$testimonial = $GLOBALS['con']->from('testimonials');
-				$data = array();
-
-				foreach($testimonial as $testimonials)
-		    	{
-					$testimonialData 	= $this->getTestimonial(array('id' => $testimonials['id']));
-					$data[] 			= $testimonialData['data'];
-				}
-
-				$response = 200;
-			
-			return array('code' => $response,'data' => $data);
+		return array('code' => $response,'data' => $data);
 			
 	}
 
 	public function getTestimonial($request)
 	{
-			// Initial response is bad request
-			//$response = 400;
+		// Initial response is bad request
+		$response = 400;
 
-				$exists = $GLOBALS['con']->from('testimonials')->where('id',$request['id']);
+		$testimonial = $GLOBALS['con']->from('testimonials')->where('id',$request['id'])->fetch();
 
-				foreach($exists as $testimonials)
-		    	{
-		    		$testimonials['web_url'] 	= Image::getRootPath(false).'data/testimonial/'.$testimonials['path'];
-					$data = $testimonials;
+		$testimonial['web_url'] = Image::getRootPath(false).'data/testimonial/'.$testimonial['path'];
+		$data = $testimonial;
 
-				}
-
-				$response = 200;
+		$response = 200;
 			
-			return array('code' => $response,'data' => $data);
+		return array('code' => $response,'data' => $data);
 			
 	}
 

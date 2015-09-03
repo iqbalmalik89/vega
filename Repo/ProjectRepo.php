@@ -3,12 +3,12 @@ class ProjectRepo{
 
 	public function getProjects($request)
 	{
-		$exists = $GLOBALS['con']->from('projects');
+		$projects = $GLOBALS['con']->from('projects');
 		$data = array();
 
-		foreach($exists as $projects)
+		foreach($projects as $project)
 		{
-		    $projectData = $this->getProject(array('id' => $projects['id']));
+		    $projectData = $this->getProject(array('id' => $project['id']));
 			$data[] = $projectData['data'];
 		}
 
@@ -21,38 +21,30 @@ class ProjectRepo{
 	public function getProject($request)
 	{
 		
-		// Initial response is bad request
-		//$response = 400;
 		$catRepo = new ProjectCategoryRepo();
-		$exists = $GLOBALS['con']->from('projects')->where('id',$request['id']);
-		foreach($exists as $projects)
+		$projects = $GLOBALS['con']->from('projects')->where('id',$request['id'])->fetch();
+		$data = array();
+
+		$images = $this->getImages($request['id']);
+		$projects['images'] = $images['data']; 
+
+		if(!empty($images['data']))
 		{
-		    // $videos = $this->getVideos($request['id']);
-		    // $projects['videos'] = $videos['data']; 
-
-		    $images = $this->getImages($request['id']);
-		    $projects['images'] = $images['data']; 
-
-		    if(!empty($images['data']))
-		    {
-		    	if(!empty($images['data'][0]))
-		    	{
-		    		$projects['web_url'] = $images['data'][0]['web_url'];
-		    	}
+		   	if(!empty($images['data'][0]))
+		  	{
+		    	$projects['web_url'] = $images['data'][0]['web_url'];
 		    }
-
-
-		    $catData = $catRepo->getProjectCategory(array('id' => $projects['cat_id']));
-		    if(!empty($catData['data']))
-		    {
-		    	if(isset($catData['data']))
-		    	{
-				    $projects['cat_name'] = $catData['data']['name'];
-		    	}
-		    }
-			$data = $projects;
-
 		}
+
+		// $catData = $catRepo->getProjectCategory(array('id' => $projects['cat_id']));
+		// if(!empty($catData['data']))
+		//    	{
+		//     	if(isset($catData['data']))
+		//     	{
+		// 		    $projects['cat_name'] = $catData['data']['name'];
+		//     	}
+		//     }
+		$data = $projects;
 
 		$response = 200;
 			
@@ -67,11 +59,11 @@ class ProjectRepo{
 
 		if(!empty($id))
 		{
-			$exists = $GLOBALS['con']->from('projects')->where('id',$id)->count();
-			if($exists)
+			$projects = $GLOBALS['con']->from('projects')->where('id',$id)->count();
+			if($projects)
 			{
 				$query 		= $GLOBALS['con']->deleteFrom('projects')->where('id', $id)->execute();
-				$video 		= $GLOBALS['con']->deleteFrom('project_videos')->where('project_id',$id)->execute();
+				//$video 		= $GLOBALS['con']->deleteFrom('project_videos')->where('project_id',$id)->execute();
 				$response 	= 200;
 			}
 			else
@@ -105,9 +97,9 @@ class ProjectRepo{
 			 $this->addProjectImages($projectId, $request['images']);
 
 			// insert Videos
-			if(!isset($request['videos']))
-				$request['videos'] = array();			 
-			$this->addProjectVideos($projectId, $request['videos']);
+			// if(!isset($request['videos']))
+			// 	$request['videos'] = array();			 
+			// $this->addProjectVideos($projectId, $request['videos']);
 		}
 		else
 		{
@@ -155,8 +147,8 @@ class ProjectRepo{
 
 		if(!empty($request['id']))
 		{
-			$video = $GLOBALS['con']->deleteFrom('project_videos')->where('project_id',$request['id'])->execute();
-			$video = $GLOBALS['con']->deleteFrom('project_images')->where('project_id',$request['id'])->execute();
+			//$video = $GLOBALS['con']->deleteFrom('project_videos')->where('project_id',$request['id'])->execute();
+			$image = $GLOBALS['con']->deleteFrom('project_images')->where('project_id',$request['id'])->execute();
 			$count = $GLOBALS['con']->from('projects')->where('id',$request['id'])->count();
 
 			if($count > 0)
@@ -170,7 +162,7 @@ class ProjectRepo{
 					$request['videos'] = array();
 
 				// add Videos
-				$this->addProjectVideos($request['id'], $request['videos']);
+				//$this->addProjectVideos($request['id'], $request['videos']);
 
 				if(!isset($request['images']))
 					$request['images'] = array();

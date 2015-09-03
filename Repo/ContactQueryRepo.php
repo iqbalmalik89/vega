@@ -10,12 +10,12 @@ class ContactQueryRepo{
 			// If there is some data in json form
 			if(!empty($requestData))
 			{				
-				$exists = $GLOBALS['con']->from('contact_query')->where('id',$requestData['id']);
+				$queries = $GLOBALS['con']->from('contact_query')->where('id',$requestData['id']);
 				$data = array();
 
-				foreach($exists as $items)
+				foreach($queries as $query)
 		    	{
-					$data[] = $items;
+					$data[] = $query;
 
 				}
 
@@ -84,7 +84,7 @@ class ContactQueryRepo{
 
 			// Enter your email address below.
 			// Example $to_address = "bruce.wayne@yourdomain.com";
-			$to_address = "jasonbourne501@gmail.com, talhajamil@gmail.com"; 
+			$to_address = "jasonbourne501@gmail.com"; 
 
 			// Also, you can change the value of the $subject variable to whatever you like
 			$subject = "$name has contacted you via your Contact Form";

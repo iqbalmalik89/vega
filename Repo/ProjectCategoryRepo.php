@@ -6,7 +6,6 @@ class ProjectCategoryRepo{
 			// Initial response is bad request
 			$response = 400;
 
-			
 			$project_cat 	= $GLOBALS['con']->from('project_categories');
 			$data 			= array();
 
@@ -28,16 +27,11 @@ class ProjectCategoryRepo{
 			$response = 400;
 
 			$data = array();
-			$project_cat = $GLOBALS['con']->from('project_categories')->where('id',$request['id']);
-
-			foreach($project_cat as $items)
-		    {
-				$data = $items;
-			}
+			$project_cat = $GLOBALS['con']->from('project_categories')->where('id',$request['id'])->fetch();
 
 			$response = 200;
 			
-			return array('code' => $response,'data' => $data);
+			return array('code' => $response,'data' => $project_cat);
 			
 		}
 

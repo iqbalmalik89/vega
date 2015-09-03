@@ -2,68 +2,63 @@
 class ServicesRepo{
 
 	public function getServices($request)
+	{
+		//Initial response is bad request
+		$response = 400;
+
+		// If there is some data in json form
+		$services = $GLOBALS['con']->from('services');
+		$data = array();
+
+		foreach($services as $service)
 		{
-			$requestData = $request;
-			// Initial response is bad request
-			//$response = 400;
+		   	$servicesData 	= $this->getService(array('id' => $service['id']));
+			$data[] 		= $servicesData['data'];
 
-			// If there is some data in json form
+		}
+
+		$response = 200;
 			
-				$service = $GLOBALS['con']->from('services');
-				$data = array();
-
-				foreach($service as $services)
-		    	{
-		    		$servicesData 	= $this->getService(array('id' => $services['id']));
-					$data[] 		= $servicesData['data'];
-
-				}
-
-				$response = 200;
-					
-			
-			return array('code' => $response,'data' => $data);
+		return array('code' => $response,'data' => $data);
 			
 	}
 
 	public function getService($request)
 	{
-				$service = $GLOBALS['con']->from('services')->where('id',$request['id']);
-				$data = array();
+		$service = $GLOBALS['con']->from('services')->where('id',$request['id'])->fetch();
+		$data = array();
 
-				foreach($service as $services)
-		    	{
-		    		$images = $this->getImages($request['id']);
-		    		$services['images'] = $images['data']; 
+		$images = $this->getImages($request['id']);
+		$service['images'] = $images['data']; 
 
-		    		if(!empty($images['data']))
-		    		{ 
-		    			if(!empty($images['data'][0]))
-		    			{
-		    				$services['web_url_1'] = $images['data'][0]['web_url'];
-		    			}
-		    			if(!empty($images['data'][1]))
-		    			{
-		    				$services['web_url_2'] = $images['data'][1]['web_url'];
-		    			}
-		    		}
+    	if(!empty($images['data']))
+    	{ 
+    		if(!empty($images['data'][0]))
+    		{
+    			$service['web_url_1'] = $images['data'][0]['web_url'];
+    		}
 
-		    		$nameArr = explode(' ', $services['name']);
+    		if(!empty($images['data'][1]))
+    		{
+    			$service['web_url_2'] = $images['data'][1]['web_url'];
+    		}
+    	}
 
-		    		if(!empty($nameArr))
-		    		{
-		    			$nameArr[0] = '<span class="id-color">'.$nameArr[0].'</span> ';
-		    		}
-		    		$services['short_description'] = substr($services['description'], 0, 270).'...';
-		    		$services['decorated_name'] = implode(' ', $nameArr);
+   		$nameArr = explode(' ', $service['name']);
+   		
+   		if(!empty($nameArr))
+   		{
+   			$nameArr[0] = '<span class="id-color">'.$nameArr[0].'</span> ';
+   		}
+   		
+   		$service['short_description'] = substr($service['description'], 0, 270).'...';
+   		$service['decorated_name'] = implode(' ', $nameArr);
 
-					$data 	= $services;
+		$data 	= $service;
 
-				}
-
-				$response = 200;
+		$response = 200;
 			
-			return array('code' => $response,'data' => $data);
+		return array('code' => $response,'data' => $data);
 			
 	}
 
@@ -116,7 +111,6 @@ class ServicesRepo{
 			}
 			else
 			{
-
 				$values 		= array('name' => $name ,'slug' => $slug,'description' => $description, 'archive' => $archive);
 				$serviceId 		= $GLOBALS['con']->insertInto('services', $values)->execute();
 

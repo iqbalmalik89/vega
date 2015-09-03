@@ -102,36 +102,37 @@ class QueryRepo{
 			$loginRepo = new LoginRepo();
 			$admindata = $loginRepo->getAdminData(1);
 
-			$to = $admindata['username'];
+			// Enter your email address below.
+			// Example $to_address = "bruce.wayne@yourdomain.com";
+			$to_address = "jasonbourne501@gmail.com"; 
 
-			$msg = "<html>
-					<head>
-					  <title>New Contact Query </title>
-					</head>
-					<body>
-						<p>".$name." sent you a message.</p>
+			// Also, you can change the value of the $subject variable to whatever you like
+			$subject = $subject;
 
-						<tr>
-						<th>Subject: ".$subject."</th>
-						<th>Name: ".$name."</th>
-						<th>Email: ".$email."</th>
-						<th>Phone: ".$phone."</th>
-						<th>Message: ".$message."</th>
-						</tr>
-					    
-					</body>
-					</html>";
-			$subject = "Contact Query";
 
-			// Always set content-type when sending HTML email
-			$headers = "MIME-Version: 1.0" . "\r\n";
-			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			// Message Content
+			$body = "You have been contacted by $name , contact number is $phone." . "\r\n" . "\r\n";
+			$content = $message . "\r\n" . "\r\n";
+			$reply = "You can contact $name at: $email.";
 
-			// More headers
-			//$headers .= 'From: <'. .'>' . "\r\n";
 
-			$email = mail($to,$subject,$msg,$headers);	
+			$message = wordwrap($body . $content . $reply, 70);
 
+
+			// Headers
+			$headers  = "From: $name " . "\r\n";
+			$headers .= "Reply-To: $email" . "\r\n";
+			$headers .= "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-Type: text/plain; charset=UTF-8" . "\r\n";
+			$headers .= "Content-Transfer-Encoding: quoted-printable" . "\r\n";
+
+
+			// Please ensure that PHP mail() function is correctly configured on your server.
+			if ( mail($to_address, $subject, $message, $headers) ) {
+				$response ='200';
+			} else {
+				$response = '400';
+			}
 			$response = '200';
 
 		}
@@ -145,32 +146,32 @@ class QueryRepo{
 
 	}
 
-	public function editQuery($request)
-	{
+	// public function editQuery($request)
+	// {
 
-		if(!empty($request))
-		{
-			$id 				= $request['id'];
-			$name 				= $request['name'];
-			$email 				= $request['email'];
-			$phone				= $request['phone'];
-			$message    		= $request['message'];
-
-
-			$values = array('id' => $id , 'name' => $name,'email' => $email,'`phone`' => $phone ,	'`message`' => $message, 'date_created' => date("Y-m-d H:i:s"));
-			$query = $GLOBALS['con']->update('queries', $values,$request['id'])->execute();
-
-			$response = '200';
-
-		}
-		else
-		{
-			$response = '400';
-		}
+	// 	if(!empty($request))
+	// 	{
+	// 		$id 				= $request['id'];
+	// 		$name 				= $request['name'];
+	// 		$email 				= $request['email'];
+	// 		$phone				= $request['phone'];
+	// 		$message    		= $request['message'];
 
 
-		return $response;
+	// 		$values = array('id' => $id , 'name' => $name,'email' => $email,'`phone`' => $phone ,	'`message`' => $message, 'date_created' => date("Y-m-d H:i:s"));
+	// 		$query = $GLOBALS['con']->update('queries', $values,$request['id'])->execute();
 
-	}
+	// 		$response = '200';
+
+	// 	}
+	// 	else
+	// 	{
+	// 		$response = '400';
+	// 	}
+
+
+	// 	return $response;
+
+	// }
 
 }
