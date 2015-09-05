@@ -96,6 +96,21 @@ function response($code, $dataAry)
         $app->render('contact.html.twig', $viewParameters);
     });
 
+     $app->get('/application-development/', function () use ($app, $viewParameters) {
+        $viewParameters['title'] = 'Application Development';
+        $app->render('application-development.html.twig', $viewParameters);
+    });
+
+     $app->get('/api-engineering/', function () use ($app, $viewParameters) {
+        $viewParameters['title'] = 'Api Engineering';
+        $app->render('api-engineering.html.twig', $viewParameters);
+    });
+
+     $app->get('/big-data/', function () use ($app, $viewParameters) {
+        $viewParameters['title'] = 'Big Data';
+        $app->render('big-data.html.twig', $viewParameters);
+    });
+
      $app->get('/testimonials/', function () use ($app, $viewParameters) {
         $testimonialRepo = new TestimonialRepo();
         $testimonials = $testimonialRepo->getTestimonials(array());

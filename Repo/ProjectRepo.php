@@ -223,6 +223,10 @@ public function getRelatedProjects($request)
 	if(!empty($project))
 	{
 		$tags = explode(',',$project['tags']);
+		foreach($tags as $tag)
+		{
+			//$related_projects = $GLOBALS['con']->from ('projects')->where('tags' like $tags);	
+		}
 		//$related_projects = $GLOBALS['con']->from ('projects')->where('tags' like $tags);
 	}
 }
