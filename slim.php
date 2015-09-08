@@ -111,6 +111,11 @@ function response($code, $dataAry)
         $app->render('big-data.html.twig', $viewParameters);
     });
 
+     $app->get('/services/', function () use ($app, $viewParameters) {
+        $viewParameters['title'] = 'Services';
+        $app->render('services.html.twig', $viewParameters);
+    });
+
      $app->get('/testimonials/', function () use ($app, $viewParameters) {
         $testimonialRepo = new TestimonialRepo();
         $testimonials = $testimonialRepo->getTestimonials(array());
